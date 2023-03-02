@@ -1,0 +1,6 @@
+texto = input("Texto: ")
+priCar = input("1º Caracter: ")
+segCar = input("2º Caracter: ")
+print(f'Foram trocadas: {texto.count(priCar)} vezes')
+texto = texto.replace(priCar, segCar)
+print(f'Nova string: {texto}')
