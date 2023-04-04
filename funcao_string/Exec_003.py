@@ -12,7 +12,7 @@ def decimalBase(numero, destino):
     return int(conversor[::-1]) if conversor.isdigit() else conversor[::-1]
 
 
-def baseDecimal(destino, numero):
+def baseNumero(destino, numero):
     B = "01"
     if destino == 8:
         B = "01234567"
@@ -20,7 +20,6 @@ def baseDecimal(destino, numero):
         B = "0123456789ABCDEF"
 
     conversor = 0
-    numero = str(numero)
     x = len(numero)-1
     for i in numero:
         conversor += destino ** x * B.index(i)
@@ -43,13 +42,6 @@ def validacaoBase(base, numero):
     return True
 
 
-'''print(baseDecimal(2, 10101))
-print(baseDecimal(8, 65))
-print(baseDecimal(16, "A12"))
-print(decimalBase(21, 2))
-print(decimalBase(21, 8))
-print(decimalBase(21, 16))'''
-
 print("*" * 30 + " CONVERSÃO DE BASES " + "*" * 30)
 base = int(input("\nDigite a Base de Origem: "))
 while True:
@@ -60,11 +52,11 @@ while True:
 
 conversao = int(input("Digite a Base que deseja Converter: "))
 if base != 10 and conversao != 10:
-    resultado = decimalBase(baseDecimal(base, numero), conversao)
+    resultado = decimalBase(baseNumero(base, numero), conversao)
 elif base == 10 and conversao != 10:
     resultado = decimalBase(int(numero), conversao)
 else:
-    resultado = baseDecimal(base, numero)
+    resultado = baseNumero(base, numero)
 
 print()
 print("*" * 30 + " RESULTADO " + "*" * 30)
