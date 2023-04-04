@@ -1,15 +1,20 @@
-def embaralhar(texto):
-    from random import shuffle
+def embaralhar(palavra):
+    if len(palavra) > 3:
+        primeiraLetra = palavra[0]
+        ultimaLetra = palavra[len(palavra) - 1]
+        palavra = list(palavra[1:len(palavra) - 1])
+
+        x = 1
+        while x < len(palavra):
+            aux = palavra[x - 1]
+            palavra[x - 1] = palavra[x]
+            palavra[x] = aux
+            x += 2
+        return primeiraLetra + ''.join(palavra) + ultimaLetra
+    return palavra
 
 
-    novoTexto = ''
-    for i in texto:
-        if len(i) > 3:
-            novoTexto += texto[0] + shuffle(i[1::len(texto)]) + texto[len(texto)]
-        else:
-            novoTexto += i
-    return novoTexto
+texto = input("Digite o texto: ")
+for i in texto:
+    print(embaralhar(i), end=' ')
 
-
-texto = input("Digite um texto: ")
-print(texto[0] + embaralhar(texto) + texto[len(texto) - 1])
