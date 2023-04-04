@@ -20,11 +20,12 @@ def baseDecimal(destino, numero):
         B = "0123456789ABCDEF"
 
     conversor = 0
+    numero = str(numero)
     x = len(numero)-1
     for i in numero:
         conversor += destino ** x * B.index(i)
         x -= 1
-    return int(conversor)
+    return conversor
 
 
 def validacaoBase(base, numero):
@@ -40,6 +41,14 @@ def validacaoBase(base, numero):
         if i not in B:
             return False
     return True
+
+
+'''print(baseDecimal(2, 10101))
+print(baseDecimal(8, 65))
+print(baseDecimal(16, "A12"))
+print(decimalBase(21, 2))
+print(decimalBase(21, 8))
+print(decimalBase(21, 16))'''
 
 print("*" * 30 + " CONVERSÃO DE BASES " + "*" * 30)
 base = int(input("\nDigite a Base de Origem: "))
