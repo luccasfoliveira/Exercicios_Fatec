@@ -7,7 +7,7 @@ def validasenha(senha):
                     numero = True
                 elif i.isupper():
                     maiuscula = True
-                elif not i.isalpha():
+                elif not i.isalnum():
                     caracter = True
 
                 if caracter and maiuscula and numero:
