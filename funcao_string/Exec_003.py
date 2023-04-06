@@ -43,7 +43,7 @@ while True:
 conversao = int(input("Digite a Base que deseja Converter: "))
 if base != 10 and conversao != 10:
     resultado = decimalBase(baseNumero(base, numero), conversao)
-elif base == 10 and conversao != 10:
+elif base == 10:
     resultado = decimalBase(int(numero), conversao)
 else:
     resultado = baseNumero(base, numero)
