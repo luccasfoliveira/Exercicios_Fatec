@@ -14,7 +14,10 @@ def embaralhar(palavra):
     return palavra
 
 
-texto = input("Digite o texto: ")
+texto = input("Digite o texto: ").split()
 for i in texto:
-    print(embaralhar(i), end=' ')
+    if not i[-1].isalnum():
+        print(embaralhar(i[:-1]) + i[-1], end=' ')
+    else:
+        print(embaralhar(i), end=' ')
 
