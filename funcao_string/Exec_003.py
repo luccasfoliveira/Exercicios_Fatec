@@ -1,6 +1,9 @@
 def decimalBase(numero, destino):
     B = "0123456789ABCDEF"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 979f2baa4be45bb03390ff71152bde019a2f1968
     conversor = ''
     while numero != 0:
         conversor += B[numero % destino]
@@ -10,7 +13,10 @@ def decimalBase(numero, destino):
 
 def baseNumero(destino, numero):
     B = "0123456789ABCDEF"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 979f2baa4be45bb03390ff71152bde019a2f1968
     conversor = 0
     x = len(numero)-1
     for i in numero:
@@ -45,7 +51,7 @@ while True:
 conversao = int(input("Digite a Base que deseja Converter: "))
 if base != 10 and conversao != 10:
     resultado = decimalBase(baseNumero(base, numero), conversao)
-elif base == 10 and conversao != 10:
+elif base == 10:
     resultado = decimalBase(int(numero), conversao)
 else:
     resultado = baseNumero(base, numero)
