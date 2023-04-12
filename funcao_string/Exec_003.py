@@ -1,9 +1,5 @@
 def decimalBase(numero, destino):
-    B = "01"
-    if destino == 8:
-        B = "01234567"
-    elif destino == 16:
-        B = "0123456789ABCDEF"
+    B = "0123456789ABCDEF"
 
     conversor = ''
     while numero != 0:
@@ -13,11 +9,7 @@ def decimalBase(numero, destino):
 
 
 def baseNumero(destino, numero):
-    B = "01"
-    if destino == 8:
-        B = "01234567"
-    elif destino == 16:
-        B = "0123456789ABCDEF"
+    B = "0123456789ABCDEF"
 
     conversor = 0
     x = len(numero)-1

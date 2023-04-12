@@ -17,4 +17,3 @@ def embaralhar(palavra):
 texto = input("Digite o texto: ")
 for i in texto:
     print(embaralhar(i), end=' ')
-
