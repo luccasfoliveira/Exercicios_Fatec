@@ -26,8 +26,6 @@ inicial = int(input('Inicial: '))
 fim = int(input('Fim: '))
 
 print(*L)
-if validar(inicial, fim):
-    print(*novaLista(L, inicial, fim))
-else:
+if not validar(inicial, fim):
     inicial, fim = fim, inicial
-    print(*novaLista(L, inicial, fim))
+print(*novaLista(L, inicial, fim))
