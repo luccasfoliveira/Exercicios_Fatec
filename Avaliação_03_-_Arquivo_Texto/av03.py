@@ -36,17 +36,15 @@ def validar_senha(password: str) -> bool:
 
 def consultar_usuario(usarname: str) -> bool:
     try:
-        with open("usuarios.txt", "r") as arquivo:
-            for linha in arquivo:
-                usuario = linha.split(";")
-                if usuario[0] == usarname:
-                    return True
+        arquivo = open("usuarios.txt", "r")
     except FileNotFoundError:
-        with open("usuarios.txt", "a+") as arquivo:
-            for linha in arquivo:
-                usuario = linha.split(";")
-                if usuario[0] == usarname:
-                    return True
+        arquivo = open("usuarios.txt", "a+")
+    for linha in arquivo:
+        usuario = linha.split(";")
+        if usuario[0] == usarname:
+            arquivo.close()
+            return True
+    arquivo.close()
     return False
 
 def consultar_senha(password: str) -> bool:
@@ -71,7 +69,6 @@ def criptografar_senha(password: str) -> str:
 
 def tela(frase: str, caracter: str, tamanho: int) -> None:
     print(frase.center(tamanho, caracter))
-
 
 def menu() -> None:
     tela(" TELA DE LOGIN " ,"=", 50)
@@ -98,7 +95,6 @@ def menu() -> None:
                 return
         if i == 2:
             tela(" (3x) ACESSO NEGADO ", "*", 50)
-            return
 
     elif opcao == 'N':
         titulo = " TELA DE CADASTRO "
