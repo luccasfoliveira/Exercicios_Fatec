@@ -35,16 +35,12 @@ def validar_senha(password: str) -> bool:
     return False
 
 def consultar_usuario(usarname: str) -> bool:
-    try:
-        arquivo = open("usuarios.txt", "r")
-    except FileNotFoundError:
-        arquivo = open("usuarios.txt", "a+")
-    for linha in arquivo:
-        usuario = linha.split(";")
-        if usuario[0] == usarname:
-            arquivo.close()
-            return True
-    arquivo.close()
+    with open("usuarios.txt", "a+") as arquivo:
+        arquivo.seek(0)
+        for linha in arquivo:
+            usuario = linha.split(";")
+            if usuario[0] == usarname:
+                return True
     return False
 
 def consultar_senha(password: str) -> bool:
@@ -73,31 +69,8 @@ def tela(frase: str, caracter: str, tamanho: int) -> None:
 def menu() -> None:
     tela(" TELA DE LOGIN " ,"=", 50)
     opcao = input("JÁ POSSUI CADASTRO [SIM/NÃO]: ").strip().upper()[0]
-    if opcao == 'S':
-        for i in range(3):
-            limpar()
-            tela(" DIGITE SEU USUÁRIO: ", "*", 50)
-            usuario = input("Usuário -> ")
-            if validar_usuario(usuario) and consultar_usuario(usuario):
-                break
-        if i == 2:
-            tela(" (3x) ACESSO NEGADO ", "*", 50)
-            return
-
-        for i in range(3):
-            limpar()
-            print(F"Usuário -> {usuario}")
-            tela(" DIGITE SUA SENHA: ", "*", 50)
-            senha = input("Senha -> ")
-            if validar_senha(senha) and consultar_senha(senha):
-                limpar()
-                tela(" ACESSO LIBERADO ", "*", 50)
-                return
-        if i == 2:
-            tela(" (3x) ACESSO NEGADO ", "*", 50)
-
-    elif opcao == 'N':
-        titulo = " TELA DE CADASTRO "
+    titulo = " TELA DE CADASTRO "
+    if opcao == 'N':
         while True:
             limpar()
             tela(titulo, "*", 50)
@@ -125,15 +98,42 @@ def menu() -> None:
                 titulo = " USUÁRIO E SENHA IGUAIS :( "
             elif validar_senha(senha):
                 senha = criptografar_senha(senha)
-                break 
-
+                break
+            else:
+                limpar()
+                titulo = " SENHA INVÁLIDA "
+        
         cadastrar_usuario_senha(usuario, senha)
         limpar()
         tela(" USUÁRIO E SENHA CADASTRADOS ", "*", 50)
-
-    else:
+    
+    elif opcao != 'S':
         limpar()
         tela(" OPÇÃO INVÁLIDA ", "=", 50)
         tela(" OBRIGADO PELA VISITA ", "=", 50)
+        return
+        
+    for i in range(3):
+        limpar()
+        tela(" DIGITE SEU USUÁRIO: ", "*", 50)
+        usuario = input("Usuário -> ")
+        if validar_usuario(usuario) and consultar_usuario(usuario):
+            break
+    if i == 2:
+        tela(" (3x) ACESSO NEGADO ", "*", 50)
+        return
+
+    for i in range(3):
+        limpar()
+        print(F"Usuário -> {usuario}")
+        tela(" DIGITE SUA SENHA: ", "*", 50)
+        senha = input("Senha -> ")
+        if validar_senha(senha) and consultar_senha(senha):
+            limpar()
+            tela(" ACESSO LIBERADO ", "*", 50)
+            return
+    if i == 2:
+        tela(" (3x) ACESSO NEGADO ", "*", 50)
+        return
 
 menu()
